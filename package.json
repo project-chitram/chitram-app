@@ -17,12 +17,13 @@
     "charts"
   ],
   "author": "KavyaSukumar",
-  "license": "CC0-1.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/project-chitram/chitram-app/issues"
   },
   "homepage": "https://github.com/project-chitram/chitram-app#readme",
   "devDependencies": {
-    "electron-prebuilt": "^0.37.8"
+    "electron-prebuilt": "^0.37.8",
+    "glob": "^6.0.4"
   }
 }
