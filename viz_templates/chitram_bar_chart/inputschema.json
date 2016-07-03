@@ -1,0 +1,46 @@
+{
+  "title": "BarChart",
+  "type": "object",
+  "properties": {
+    "chartData": {
+      "type": "array",
+      "format": "table",
+      "title": "Data for bar chart",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "title": "Row",
+        "properties": {
+          "x": {
+            "type": "string",
+            "title": "X"
+          },
+          "y": {
+            "type": "numeric",
+            "title": "Y"
+          }
+        }
+      }
+    },
+    "xLabel": {
+      "type": "string",
+      "title": "Label for x axis"
+    },
+    "yLabel": {
+      "type": "string",
+      "title": "Label for y axis"
+    },
+    "fillColor": {
+      "type": "string",
+      "format": "color",
+      "title": "Bar color",
+      "default": "#ffa500"
+    },
+    "duration": {
+      "type": "integer",
+      "maximum": 10,
+      "title": "Duration of animation in seconds",
+      "default": 3
+    }
+  }
+}
