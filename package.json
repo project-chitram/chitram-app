@@ -25,5 +25,8 @@
   "devDependencies": {
     "electron-prebuilt": "^0.37.8",
     "glob": "^6.0.4"
+  },
+  "dependencies": {
+    "electron-json-storage": "^2.0.0"
   }
 }
