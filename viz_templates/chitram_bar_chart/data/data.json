@@ -19,6 +19,7 @@
   ],
   "xLabel": "",
   "yLabel": "Test",
-  "fillColor": "#ffa500",
+  "fillColor": "#bada55",
+  "backgroundColor":"white",
   "duration": 3
 }
