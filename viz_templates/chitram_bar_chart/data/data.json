@@ -1,28 +1,24 @@
 {
-  "xType":"category",
-  "yType":"number",
-  "xLabel":"",
-  "yLabel":"Sales",
   "chartData": [
-    {"x": "apple",
-    "y": 10},
-    {"x": "orange",
-    "y": 14},
-    {"x": "mango",
-    "y": 20},
-    {"x": "banana",
-    "y": 20},
-    {"x": "pear",
-    "y": 10},
-    {"x": "peach",
-    "y": 14},
-    {"x": "cherry",
-    "y": 20},
-    {"x": "grapes",
-    "y": 20},
-    {"x": "plum",
-    "y": 30}
+    {
+      "x": "A",
+      "y": 10.5
+    },
+    {
+      "x": "B",
+      "y": 3
+    },
+    {
+      "x": "C",
+      "y": 2
+    },
+    {
+      "x": "D",
+      "y": 0.5
+    }
   ],
-  "fillColor":"steelblue",
-  "duration":3
+  "xLabel": "",
+  "yLabel": "Test",
+  "fillColor": "#ffa500",
+  "duration": 3
 }
