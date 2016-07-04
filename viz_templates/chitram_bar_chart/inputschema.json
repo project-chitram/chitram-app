@@ -2,11 +2,18 @@
     "title": "Bar Chart",
     "type": "object",
     "properties": {
+      "projectName":{
+        "type": "string",
+        "title":"Project name",
+        "required":true
+      },
       "chartData": {
         "type": "array",
         "format": "table",
         "title": "Data for bar chart",
         "uniqueItems": true,
+        "minItem":2,
+        "maxItems": 10,
         "items": {
           "type": "object",
           "title": "Row",

@@ -8,14 +8,24 @@ var editor = new JSONEditor(document.getElementById('editor-holder'),
                             {
                               disable_properties: true,
                               disable_collapse: true,
-                              theme: 'foundation5',
+                              theme: 'foundation6',
+                              iconlib:'fontawesome4',
                               schema: inputSchema
                             });
 
 const previewBtn = document.getElementById('preview-button')
+
 previewBtn.addEventListener('click', function (event) {
-  var file = require('path').join(__dirname, '../../viz_templates/'+event.target.dataset.template +'/data/data.json')
+  var editorErrors = editor.validate()
+  if(editorErrors.length){
+    var errorDiv = document.getElementById('editor-errors')
+    errorDiv.innerHTML('')
+    errorDiv.innerHTML("Fix the following errors before continuing:\n" + editorErrors)
+    return;
+  }
   var obj = editor.getValue()
+
+  var file = require('path').join(__dirname, '../../viz_templates/'+event.target.dataset.template +'/data/' + obj.projectName + '.json')
   jsonfile.writeFile(file, obj)
   const BrowserWindow = require('electron').remote.BrowserWindow
   const modalPath = 'http://127.0.0.1:60923/' + event.target.dataset.template +'/index.html'
