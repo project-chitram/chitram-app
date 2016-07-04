@@ -44,14 +44,16 @@ var svg = d3.select("body").append("svg")
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-d3.json("data/data.json", function(error, fullData) {
+var url = window.location.href;
+var dataFile = url.substr(url.indexOf('?dataFile=')).replace('?dataFile=','');
+d3.json("data/"+ dataFile + ".json", function(error, fullData) {
   var data = fullData.chartData;
   var bar_count = data.length;
   var t_per_bar = fullData.duration * 1000/bar_count;
   if (error) throw error;
 
   // apply background color
-  d3.select("body").style('background-color', fullData.backgroundColor);
+  d3.select("body").style('background-color', fullData.backgroundColor || 'white');
   svg.style('fill', fullData.backgroundColor);
 
   x.domain(data.map(function(d) { return d.x; }));

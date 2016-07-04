@@ -10,6 +10,7 @@ var editor = new JSONEditor(document.getElementById('editor-holder'),
                               disable_collapse: true,
                               theme: 'foundation6',
                               iconlib:'fontawesome4',
+                              show_errors:'change',
                               schema: inputSchema
                             });
 
@@ -19,38 +20,41 @@ previewBtn.addEventListener('click', function (event) {
   var editorErrors = editor.validate()
   if(editorErrors.length){
     var errorDiv = document.getElementById('editor-errors')
-    errorDiv.innerHTML('')
-    errorDiv.innerHTML("Fix the following errors before continuing:\n" + editorErrors)
+    errorDiv.innerHTML = ''
+    errorDiv.innerHTML = "There are errors in the form".
     return;
-  } else {
-    var obj = editor.getValue()
-
-    var file = require('path').join(__dirname, '../../viz_templates/'
-                                                + event.target.dataset.template
-                                                + '/data/' + obj.projectName
-                                                + '.json')
-    jsonfile.writeFile(file, obj)
-    const BrowserWindow = require('electron').remote.BrowserWindow
-    const modalPath = 'http://127.0.0.1:60923/' + event.target.dataset.template +'/index.html'
-    console.log(modalPath)
-    let win = new BrowserWindow({ width: 1000,
-                                  height: 600,
-                                  nodeIntegration: false,
-                                  webPreferences: {
-                                      webSecurity: false
-                                  }
-                                })
-    win.on('closed', function () { win = null })
-    win.loadURL(modalPath, {"extraHeaders" : "pragma: no-cache\n"})
-    win.show()
   }
+
+  var obj = editor.getValue()
+  var dataFile = obj.projectName
+  var file = require('path').join(__dirname, '../../viz_templates/'
+                                              + event.target.dataset.template
+                                              + '/data/' + dataFile + '.json')
+  jsonfile.writeFile(file, obj)
+  const BrowserWindow = require('electron').remote.BrowserWindow
+  const modalPath = 'http://127.0.0.1:60923/'
+                    + event.target.dataset.template
+                    +'/index.html?dataFile=' + dataFile
+
+  let win = new BrowserWindow({ width: 1000,
+                                height: 600,
+                                nodeIntegration: false,
+                                webPreferences: {
+                                    webSecurity: false
+                                }
+                              })
+  win.on('closed', function () { win = null })
+  win.loadURL(modalPath, {"extraHeaders" : "pragma: no-cache\n"})
+  win.show()
 });
 
 
 const captureBtn = document.getElementById('capture-video-button')
 captureBtn.addEventListener('click', function (event) {
+  var fileName = editor.getValue().projectName
   var createVideoScript = require('path').join(__dirname, '../../bash/create-video.sh')
-  const chartUri = 'http://127.0.0.1:60923/' + event.target.dataset.template +'/index.html'
+  const chartUri = 'http://127.0.0.1:60923/' + event.target.dataset.template
+                   + '/index.html?dataFile=' + fileName
   const videoFile = '/tmp/' + event.target.dataset.template + '.mp4'
   const videoOut = document.getElementById('capture-video-status')
   const spawn = require('child_process').spawn;

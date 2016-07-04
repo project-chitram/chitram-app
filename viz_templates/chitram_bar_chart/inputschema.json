@@ -5,7 +5,8 @@
       "projectName":{
         "type": "string",
         "title":"Project name",
-        "required":true
+        "required":true,
+        "minLength": 4
       },
       "chartData": {
         "type": "array",
