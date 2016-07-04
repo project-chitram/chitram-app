@@ -31,3 +31,32 @@ previewBtn.addEventListener('click', function (event) {
   win.loadURL(modalPath, {"extraHeaders" : "pragma: no-cache\n"})
   win.show()
 });
+
+
+const captureBtn = document.getElementById('capture-video-button')
+captureBtn.addEventListener('click', function (event) {
+  var createVideoScript = require('path').join(__dirname, '../../bash/create-video.sh')
+  const chartUri = 'http://127.0.0.1:60923/' + event.target.dataset.template +'/index.html'
+  const videoFile = '/tmp/' + event.target.dataset.template + '.mp4'
+  const videoOut = document.getElementById('capture-video-status')
+  const spawn = require('child_process').spawn;
+  const createVideo = spawn(createVideoScript, [chartUri, videoFile]);
+
+  createVideo.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+  });
+
+  createVideo.stderr.on('data', (data) => {
+    console.log(`stderr: ${data}`);
+  });
+
+  createVideo.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+    if(code == 0) {
+      videoOut.innerText += `Video creation succeeded, Video is at ${videoFile}`
+    } else {
+      videoOut.innerText += `Video creation failed with code ${code}`
+    }
+  });
+
+});
