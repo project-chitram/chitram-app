@@ -7,7 +7,7 @@ process=`ps  | grep http-server | grep -v grep | cut -d ' ' -f 1`
 
 if [ -z $process ]; then
   echo "Web server is not started starting it with rootDir: ${rootDir}"
-  node node_modules/http-server/bin/http-server  ${rootDir} -p $port &
+  node node_modules/http-server/bin/http-server  ${rootDir} -p $port -c-1 &
 else 
   echo "Web server is already started pid:${process}, Using the same web server."
 fi
