@@ -1,0 +1,28 @@
+<template class="task-template">
+  <section id="spawn-section" class="section js-section u-category-windows">
+    <header class="section-header">
+      <div class="section-wrapper">
+        <h1>
+          <svg class="section-icon"><use xlink:href="assets/img/icons.svg#icon-windows"></use></svg>
+          Test spawning ls
+        </h1>      
+      </div>
+    </header>
+
+    <div class="demo">
+      <div class="demo-controls">
+        <button class="demo-button" id="spawn-ls-button">View Demo</button>
+        <span class="demo-response" id="spawn-ls-out"></span>
+      </div>
+    </div>
+
+
+    <script type="text/javascript">
+      require('./renderer-process/windows/spawn-ls')
+      require('./renderer-process/windows/create-window')
+      require('./renderer-process/windows/manage-window')
+      require('./renderer-process/windows/frameless-window')
+    </script>
+
+  </section>
+</template>
