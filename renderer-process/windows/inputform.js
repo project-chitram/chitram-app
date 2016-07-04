@@ -22,24 +22,28 @@ previewBtn.addEventListener('click', function (event) {
     errorDiv.innerHTML('')
     errorDiv.innerHTML("Fix the following errors before continuing:\n" + editorErrors)
     return;
-  }
-  var obj = editor.getValue()
+  } else {
+    var obj = editor.getValue()
 
-  var file = require('path').join(__dirname, '../../viz_templates/'+event.target.dataset.template +'/data/' + obj.projectName + '.json')
-  jsonfile.writeFile(file, obj)
-  const BrowserWindow = require('electron').remote.BrowserWindow
-  const modalPath = 'http://127.0.0.1:60923/' + event.target.dataset.template +'/index.html'
-  console.log(modalPath)
-  let win = new BrowserWindow({ width: 1000,
-                                height: 600,
-                                nodeIntegration: false,
-                                webPreferences: {
-                                    webSecurity: false
-                                }
-                              })
-  win.on('closed', function () { win = null })
-  win.loadURL(modalPath, {"extraHeaders" : "pragma: no-cache\n"})
-  win.show()
+    var file = require('path').join(__dirname, '../../viz_templates/'
+                                                + event.target.dataset.template
+                                                + '/data/' + obj.projectName
+                                                + '.json')
+    jsonfile.writeFile(file, obj)
+    const BrowserWindow = require('electron').remote.BrowserWindow
+    const modalPath = 'http://127.0.0.1:60923/' + event.target.dataset.template +'/index.html'
+    console.log(modalPath)
+    let win = new BrowserWindow({ width: 1000,
+                                  height: 600,
+                                  nodeIntegration: false,
+                                  webPreferences: {
+                                      webSecurity: false
+                                  }
+                                })
+    win.on('closed', function () { win = null })
+    win.loadURL(modalPath, {"extraHeaders" : "pragma: no-cache\n"})
+    win.show()
+  }
 });
 
 
