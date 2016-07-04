@@ -6,7 +6,7 @@ const autoUpdater = require('./auto-updater')
 const BrowserWindow = electron.BrowserWindow
 const app = electron.app
 
-const debug = false
+const debug = true
 
 var mainWindow = null
 
