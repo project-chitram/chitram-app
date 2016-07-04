@@ -1,5 +1,5 @@
 {
-    "title": "BarChart",
+    "title": "Bar Chart",
     "type": "object",
     "properties": {
       "chartData": {
