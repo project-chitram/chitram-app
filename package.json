@@ -31,7 +31,8 @@
     "electron-shortcut-normalizer": "^1.0.0",
     "glob": "^6.0.4",
     "highlight.js": "^9.3.0",
+    "http-server": "^0.9.0",
     "json-editor": "^0.7.26",
-    "http-server": "^0.9.0"
+    "jsonfile": "^2.3.1"
   }
 }
