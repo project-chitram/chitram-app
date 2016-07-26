@@ -50,12 +50,21 @@ var svg = d3.select("body").append("svg")
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var qsp = {};
 var url = window.location.href;
-var dataFile = url.substr(url.indexOf('?dataFile=')).replace('?dataFile=','');
-d3.json("data/"+ dataFile + ".json", function(error, fullData) {
+var params = url.substr(url.indexOf('?')).replace('?','').split('&');
+params.forEach(function(p,i){
+parts = p.split('=');
+qsp[parts[0]]=parts[1];})
+
+
+d3.json("data/"+ qsp.dataFile + ".json", function(error, fullData) {
   var data = fullData.chartData;
   var bar_count = data.length;
   var t_per_bar = fullData.duration * 1000/bar_count;
+  if (qsp.slowmo === 'true') {
+    t_per_bar *= 2;
+  }
   if (error) throw error;
 
   // apply background color

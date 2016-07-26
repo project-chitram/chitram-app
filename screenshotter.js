@@ -20,7 +20,7 @@ page.open(address, function(){
       if(frame >= totalFrames) {
         phantom.exit();
       }
-    }, 46);
+    }, 81);
   });
 });
 

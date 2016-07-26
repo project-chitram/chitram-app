@@ -15,7 +15,12 @@ var editor = new JSONEditor(document.getElementById('editor-holder'),
                             });
 
 const previewBtn = document.getElementById('preview-button')
-
+var writeDataFile = function(fileName, templateName, data){
+  var file = require('path').join(__dirname, '../../viz_templates/'
+                                              + templateName
+                                              + '/data/' + dataFile + '.json')
+  jsonfile.writeFile(file, data)
+}
 previewBtn.addEventListener('click', function (event) {
   var editorErrors = editor.validate()
   if(editorErrors.length){
@@ -28,10 +33,7 @@ previewBtn.addEventListener('click', function (event) {
   var obj = editor.getValue()
   var dataFile = obj.projectName
   var duration = obj.duration;
-  var file = require('path').join(__dirname, '../../viz_templates/'
-                                              + event.target.dataset.template
-                                              + '/data/' + dataFile + '.json')
-  jsonfile.writeFile(file, obj)
+  writeDataFile(dataFile, event.target.dataset.template, obj)
   const BrowserWindow = require('electron').remote.BrowserWindow
   const modalPath = 'http://127.0.0.1:60923/'
                     + event.target.dataset.template
@@ -54,9 +56,11 @@ const captureBtn = document.getElementById('capture-video-button')
 captureBtn.addEventListener('click', function (event) {
   var fileName = editor.getValue().projectName
   var duration = editor.getValue().duration
+  writeDataFile(fileName, event.target.dataset.template, editor.getValue())
   var createVideoScript = require('path').join(__dirname, '../../bash/create-video.sh')
   const chartUri = 'http://127.0.0.1:60923/' + event.target.dataset.template
                    + '/index.html?dataFile=' + fileName
+                   +'&slowmo=true'
   const videoFile = '/tmp/' + event.target.dataset.template + '.mp4'
   const videoOut = document.getElementById('capture-video-status')
   const spawn = require('child_process').spawn;
