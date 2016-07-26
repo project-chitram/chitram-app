@@ -52,13 +52,14 @@ previewBtn.addEventListener('click', function (event) {
 const captureBtn = document.getElementById('capture-video-button')
 captureBtn.addEventListener('click', function (event) {
   var fileName = editor.getValue().projectName
+  var duration = editor.getValue().duration
   var createVideoScript = require('path').join(__dirname, '../../bash/create-video.sh')
   const chartUri = 'http://127.0.0.1:60923/' + event.target.dataset.template
                    + '/index.html?dataFile=' + fileName
   const videoFile = '/tmp/' + event.target.dataset.template + '.mp4'
   const videoOut = document.getElementById('capture-video-status')
   const spawn = require('child_process').spawn;
-  const createVideo = spawn(createVideoScript, [chartUri, videoFile]);
+  const createVideo = spawn(createVideoScript, [chartUri, videoFile, duration]);
 
   createVideo.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
