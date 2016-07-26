@@ -27,6 +27,7 @@ previewBtn.addEventListener('click', function (event) {
 
   var obj = editor.getValue()
   var dataFile = obj.projectName
+  var duration = obj.duration;
   var file = require('path').join(__dirname, '../../viz_templates/'
                                               + event.target.dataset.template
                                               + '/data/' + dataFile + '.json')

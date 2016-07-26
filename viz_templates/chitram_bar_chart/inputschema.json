@@ -30,10 +30,6 @@
           }
         }
       },
-      "xLabel": {
-        "type": "string",
-        "title": "Label for x axis"
-      },
       "yLabel": {
         "type": "string",
         "title": "Label for y axis"
@@ -43,6 +39,12 @@
         "format": "color",
         "title": "Bar color",
         "default": "#666"
+      },
+      "backgroundColor": {
+        "type": "string",
+        "format": "color",
+        "title": "Background color",
+        "default": "#fff"
       },
       "duration": {
         "type": "integer",
