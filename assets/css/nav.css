@@ -25,8 +25,9 @@
 .nav-title {
   text-transform: uppercase;
   font-weight: 300;
-  line-height: 1;
+  line-height: .9;
   margin: 0;
+  padding-left: 55px;
 }
 
 .nav-title strong {
@@ -36,10 +37,10 @@
 
 .nav-header-icon {
   position: absolute;
-  width: 36px;
-  height: 36px;
+  width: 50px;
+  height: 60px;
   top: 1.5rem; /* magic */
-  right: 1.75rem; /* magic */
+  left: 1.75rem; /* magic */
 }
 
 

@@ -42,7 +42,7 @@
         "type": "string",
         "format": "color",
         "title": "Bar color",
-        "default": "#ffa500"
+        "default": "#666"
       },
       "duration": {
         "type": "integer",
