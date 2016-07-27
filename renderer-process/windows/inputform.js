@@ -18,7 +18,7 @@ const previewBtn = document.getElementById('preview-button')
 var writeDataFile = function(fileName, templateName, data){
   var file = require('path').join(__dirname, '../../viz_templates/'
                                               + templateName
-                                              + '/data/' + dataFile + '.json')
+                                              + '/data/' + fileName + '.json')
   jsonfile.writeFile(file, data)
 }
 previewBtn.addEventListener('click', function (event) {
