@@ -2,6 +2,10 @@ const path = require('path');
 require('json-editor');
 var jsonfile = require('jsonfile')
 var fs = require('fs');
+window.$ = require('../../assets/js/jquery.js')
+window.jQuery = require('../../assets/js/jquery.js')
+var foundation = require('../../assets/js/foundation.js')
+
 var schemaFile = path.join(__dirname, '../../viz_templates/chitram_bar_chart/inputschema.json');
 var inputSchema = JSON.parse(fs.readFileSync(schemaFile, 'utf8'));
 var editor = new JSONEditor(document.getElementById('editor-holder'),
@@ -18,7 +22,7 @@ const previewBtn = document.getElementById('preview-button')
 var writeDataFile = function(fileName, templateName, data){
   var file = require('path').join(__dirname, '../../viz_templates/'
                                               + templateName
-                                              + '/data/' + dataFile + '.json')
+                                              + '/data/' + fileName + '.json')
   jsonfile.writeFile(file, data)
 }
 previewBtn.addEventListener('click', function (event) {
@@ -51,9 +55,22 @@ previewBtn.addEventListener('click', function (event) {
   win.show()
 });
 
+const backBtn = document.getElementById('back-button')
+backBtn.addEventListener('click', function(){
+  video = document.getElementById('result-video')
+  video.pause()
+  window.$('#result-video').addClass('hide')
+  window.$("#result").addClass('hide')
+  window.$("#spinner").addClass('hide')
+  window.$("#form-holder").removeClass('hide')
+})
 
 const captureBtn = document.getElementById('capture-video-button')
 captureBtn.addEventListener('click', function (event) {
+  // UI updates
+  window.$("#form-holder").addClass('hide')
+  window.$("#spinner").removeClass('hide')
+
   var fileName = editor.getValue().projectName
   var duration = editor.getValue().duration
   writeDataFile(fileName, event.target.dataset.template, editor.getValue())
@@ -77,8 +94,17 @@ captureBtn.addEventListener('click', function (event) {
   createVideo.on('close', (code) => {
     console.log(`child process exited with code ${code}`);
     if(code == 0) {
-      videoOut.innerText += `Video creation succeeded, Video is at ${videoFile}`
+      window.$('#result-video source').attr('src', videoFile)
+      window.$("#result").removeClass('hide')
+      window.$("#spinner").addClass('hide')
+
+      video = document.getElementById('result-video');
+      video.load()
+      video.play()
+
+      // videoOut.innerText += `Video creation succeeded, Video is at ${videoFile}`
     } else {
+      window.$('#result-video').addClass('hide')
       videoOut.innerText += `Video creation failed with code ${code}`
     }
   });

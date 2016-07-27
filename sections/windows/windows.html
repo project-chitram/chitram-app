@@ -1,5 +1,6 @@
 <template class="task-template">
   <section id="windows-section" class="section js-section u-category-windows">
+    <span id="form-holder">
     <header class="section-header">
         <h1>
           <i class="fa fa-bar-chart" aria-hidden="true"></i>
@@ -7,19 +8,27 @@
         </h1>
         <p> Enter data here to create a dataviz</p>
     </header>
-    <div id="editor-errors"></div>
-    <div id="editor-holder"></div>
-    <button type="button" class="button" id="preview-button" data-template="chitram_bar_chart">
-      <i class="fa fa-eye" aria-hidden="true"></i> Preview
-    </button>
-    <button type="button" class="button" id="capture-video-button" data-template="chitram_bar_chart">
-      <i class="fa fa-video-camera" aria-hidden="true"></i> Capture Video
-    </button>
+      <div id="editor-errors"></div>
+      <div id="editor-holder"></div>
+      <button type="button" class="button" id="preview-button" data-template="chitram_bar_chart">
+        <i class="fa fa-eye" aria-hidden="true"></i> Preview
+      </button>
+      <button type="button" class="button" id="capture-video-button" data-template="chitram_bar_chart">
+        <i class="fa fa-video-camera" aria-hidden="true"></i> Capture Video
+      </button>
+    </span>
     <div id="spinner" class="hide">
       <img src="assets/img/spinner.gif" class="float-center"/>
     </div>
-    <div id="result" class="hide"></div>
-    <span id="capture-video-status"></span>
+    <div id="result" class="hide">
+      <video id="result-video" class="float-center" width="800" height="450" controls>
+        <source src="" type="video/mp4">
+      </video>
+      <span id="capture-video-status"></span>
+      <button type="button" class="button" id="back-button" data-template="chitram_bar_chart">
+        <i class="fa fa-back" aria-hidden="true"></i> Back
+      </button>
+    </div>
     <script type="text/javascript">
       require('./renderer-process/windows/inputform.js')
     </script>
