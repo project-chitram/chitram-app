@@ -38,13 +38,13 @@
         "type": "string",
         "format": "color",
         "title": "Bar color",
-        "default": "#666"
+        "default": "#666666"
       },
       "backgroundColor": {
         "type": "string",
         "format": "color",
         "title": "Background color",
-        "default": "#fff"
+        "default": "#f0f0f0"
       },
       "duration": {
         "type": "integer",

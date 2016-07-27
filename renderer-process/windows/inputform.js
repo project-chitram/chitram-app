@@ -100,7 +100,6 @@ captureBtn.addEventListener('click', function (event) {
 
       video = document.getElementById('result-video');
       video.load()
-      video.play()
 
       // videoOut.innerText += `Video creation succeeded, Video is at ${videoFile}`
     } else {
