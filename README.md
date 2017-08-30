@@ -1,5 +1,3 @@
-# chitram-app
-
 # What is Chitram?
 
 
